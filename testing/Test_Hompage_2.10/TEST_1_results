@@ -4,168 +4,170 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://24.11.254.60/" />
-<title>TEST_1</title>
+<title>Test case</title>
+<style>.failed {color: red; background-color: #ffcccc;}.passed {color: black; background-color: #ccffcc;}.done {color: black; background-color: #eeffee;}</style>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">TEST_1</td></tr>
+<tr><td rowspan="1" colspan="3">Test case</td></tr>
 </thead><tbody>
-<tr>
+<tr class="done">
 	<td>setTimeout</td>
 	<td>1000</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>open</td>
 	<td>http://24.11.254.60/</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>type</td>
 	<td>name=idNumber</td>
 	<td>1234567</td>
 </tr>
-<tr>
+<tr class="done">
 	<td>type</td>
 	<td>name=password</td>
 	<td>password</td>
 </tr>
-<tr>
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>name=submit</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>captureEntirePageScreenshot</td>
 	<td>/Applications/MAMP/htdocs/IWU_app/testing/ScreenShots/test_1.png</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>open</td>
 	<td>http://24.11.254.60/</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>type</td>
 	<td>name=idNumber</td>
 	<td>abcdefg</td>
 </tr>
-<tr>
+<tr class="done">
 	<td>type</td>
 	<td>name=password</td>
 	<td>password</td>
 </tr>
-<tr>
+<tr class="failed">
 	<td>clickAndWait</td>
 	<td>name=submit</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>captureEntirePageScreenshot</td>
 	<td>/Applications/MAMP/htdocs/IWU_app/testing/ScreenShots/test_2.png</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>open</td>
 	<td>http://24.11.254.60/</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>type</td>
 	<td>name=idNumber</td>
 	<td>123456789</td>
 </tr>
-<tr>
+<tr class="done">
 	<td>type</td>
 	<td>name=password</td>
 	<td>password</td>
 </tr>
-<tr>
+<tr class="failed">
 	<td>clickAndWait</td>
 	<td>name=submit</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>captureEntirePageScreenshot</td>
 	<td>/Applications/MAMP/htdocs/IWU_app/testing/ScreenShots/test_3.png</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>open</td>
 	<td>http://24.11.254.60/</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>type</td>
 	<td>name=idNumber</td>
 	<td>1234567</td>
 </tr>
-<tr>
+<tr class="done">
 	<td>type</td>
 	<td>name=password</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="failed">
 	<td>clickAndWait</td>
 	<td>name=submit</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>captureEntirePageScreenshot</td>
 	<td>/Applications/MAMP/htdocs/IWU_app/testing/ScreenShots/test_4.png</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>open</td>
 	<td>http://24.11.254.60/</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>type</td>
 	<td>name=idNumber</td>
 	<td>1234567</td>
 </tr>
-<tr>
+<tr class="done">
 	<td>type</td>
 	<td>name=password</td>
 	<td>pass</td>
 </tr>
-<tr>
+<tr class="failed">
 	<td>clickAndWait</td>
 	<td>name=submit</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>captureEntirePageScreenshot</td>
 	<td>/Applications/MAMP/htdocs/IWU_app/testing/ScreenShots/test_5.png</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>open</td>
 	<td>http://24.11.254.60/</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>type</td>
 	<td>name=idNumber</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>type</td>
 	<td>name=password</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="failed">
 	<td>clickAndWait</td>
 	<td>name=submit</td>
 	<td></td>
 </tr>
-<tr>
+<tr class="done">
 	<td>captureEntirePageScreenshot</td>
 	<td>/Applications/MAMP/htdocs/IWU_app/testing/ScreenShots/test_6.png</td>
 	<td></td>
 </tr>
+
 </tbody></table>
 </body>
 </html>
