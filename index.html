@@ -31,61 +31,57 @@
 		<script src="js/foundation.min.js"></script>
 		<script>
 			$(document).foundation();
-			function checkAll()
-			{
-				if(checkForm(document.getElementsByName('idNumber')[0]) && checkPass(document.getElementsByName('password')[0]))
-				{
-					return true;
-				}
-				else {
-					return false;
-				}
+			
+			function isNumeric(obj) {
+				"use strict";
+				return obj - parseFloat(obj) >= 0;
 			}
 			
 			function checkForm(user)
 			{
-				if(user.value.length != 7 || isNumeric(user.value) === false)
+				"use strict";
+				if (user.value.length !== 7 || isNumeric(user.value) === false)
 				{
 					user.style.borderColor = "red";
 					user.nextSibling.nextSibling.style.display = "block";
 					return false;
 				}
-				else
-				{
-					user.style.borderColor = "green";
-					user.nextSibling.nextSibling.style.display = "none";
-					return true;
-				}
-				
+				user.style.borderColor = "green";
+				user.nextSibling.nextSibling.style.display = "none";
+				return true;
 			}
 			
 			function checkPass(passwrd)
 			{
-				if(passwrd !== null)
+				"use strict";
+				if (passwrd !== null)
 				{
-					if(passwrd.value.length < 5)
+					if (passwrd.value.length < 5)
 					{
 						passwrd.style.borderColor = "red";
 						passwrd.nextSibling.nextSibling.style.display = "block";
 						return false;
 					}
-					else
-					{
-						passwrd.style.borderColor = "green";
-						passwrd.nextSibling.nextSibling.style.display = "none";
-						return true;
-					}
+					passwrd.style.borderColor = "green";
+					passwrd.nextSibling.nextSibling.style.display = "none";
+					return true;
+					
 				}
-				else
-				{
-					passwrd.style.borderColor = "red";
-					passwrd.nextSibling.nextSibling.style.display = "block";
-					return false;
-				}
+				passwrd.style.borderColor = "red";
+				passwrd.nextSibling.nextSibling.style.display = "block";
+				return false;
+				
 			}
 			
-			function isNumeric(obj) {
-				return obj - parseFloat(obj) >= 0;
+			
+			function checkAll()
+			{
+				"use strict";
+				if (checkForm(document.getElementsByName('idNumber')[0]) && checkPass(document.getElementsByName('password')[0]))
+				{
+					return true;
+				}
+				return false;
 			}
 		</script>
 	</body>
