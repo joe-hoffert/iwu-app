@@ -1,92 +1,92 @@
 <!doctype html>
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IWU APP Test Site</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-    <script src="js/vendor/modernizr.js"></script>
-    <style>
-    	.error {
-	    	margin-top: -17px !important;
-    	}
-    </style>
-  </head>
-  <body>
-    <div class="row">
-    	<div class="large-4 columns large-centered text-center">
-    		<h2>Check Points</h2>
-    		<h2 class="subheader"><small>Enter your ID Number and Password</small></h2>
-    		<form name="login" action="index.html" method="post" onsubmit="return checkAll()">
-    			<input type="tel" name="idNumber" placeholder="ID Number" autofocus required title="Seven digit ID#" onblur="checkForm(this)">
-    			<small class="error" style="display:none">Seven digit ID# is required</small>
-    			<input type="password" name="password" placeholder="Password" required onblur="checkPass(this)">
-    			<small class="error" style="display:none">Password is required.</small>
-    			<input type="submit" name="submit" class="button">
-    		</form>
-    	</div>
-    </div>
-    
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-      function checkAll()
-      {
-          if(checkForm(document.getElementsByName('idNumber')[0]) && checkPass(document.getElementsByName('password')[0]))
-          {
-	          return true;
-          }
-          else {
-	          return false;
-          }
-      }
-      
-	    function checkForm(user)
-		{
-			if(user.value.length != 7 || isNumeric(user.value) == false)
-			{
-				user.style.borderColor = "red";
-				user.nextSibling.nextSibling.style.display = "block";
-				return false;
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>IWU APP Test Site</title>
+		<link rel="stylesheet" href="css/foundation.css" />
+		<script src="js/vendor/modernizr.js"></script>
+		<style>
+			.error {
+				margin-top: -17px !important;
 			}
-			else
+		</style>
+	</head>
+	<body>
+		<div class="row">
+			<div class="large-4 columns large-centered text-center">
+				<h2>Check Points</h2>
+				<h2 class="subheader"><small>Enter your ID Number and Password</small></h2>
+				<form name="login" action="index.html" method="post" onsubmit="return checkAll()">
+					<input type="tel" name="idNumber" placeholder="ID Number" autofocus required title="Seven digit ID#" onblur="checkForm(this)">
+					<small class="error" style="display:none">Seven digit ID# is required</small>
+					<input type="password" name="password" placeholder="Password" required onblur="checkPass(this)">
+					<small class="error" style="display:none">Password is required.</small>
+					<input type="submit" name="submit" class="button">
+				</form>
+			</div>
+		</div>
+		
+		<script src="js/vendor/jquery.js"></script>
+		<script src="js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+			function checkAll()
 			{
-				user.style.borderColor = "green";
-				user.nextSibling.nextSibling.style.display = "none";
-				return true;
+				if(checkForm(document.getElementsByName('idNumber')[0]) && checkPass(document.getElementsByName('password')[0]))
+				{
+					return true;
+				}
+				else {
+					return false;
+				}
 			}
 			
-		}
-		
-		function checkPass(passwrd)
-		{
-			if(passwrd != null)
+			function checkForm(user)
 			{
-				if(passwrd.value.length < 5)
+				if(user.value.length != 7 || isNumeric(user.value) === false)
+				{
+					user.style.borderColor = "red";
+					user.nextSibling.nextSibling.style.display = "block";
+					return false;
+				}
+				else
+				{
+					user.style.borderColor = "green";
+					user.nextSibling.nextSibling.style.display = "none";
+					return true;
+				}
+				
+			}
+			
+			function checkPass(passwrd)
+			{
+				if(passwrd !== null)
+				{
+					if(passwrd.value.length < 5)
+					{
+						passwrd.style.borderColor = "red";
+						passwrd.nextSibling.nextSibling.style.display = "block";
+						return false;
+					}
+					else
+					{
+						passwrd.style.borderColor = "green";
+						passwrd.nextSibling.nextSibling.style.display = "none";
+						return true;
+					}
+				}
+				else
 				{
 					passwrd.style.borderColor = "red";
 					passwrd.nextSibling.nextSibling.style.display = "block";
 					return false;
 				}
-				else
-				{
-					passwrd.style.borderColor = "green";
-					passwrd.nextSibling.nextSibling.style.display = "none";
-					return true;
-				}
 			}
-			else
-			{
-				passwrd.style.borderColor = "red";
-				passwrd.nextSibling.nextSibling.style.display = "block";
-				return false
+			
+			function isNumeric(obj) {
+				return obj - parseFloat(obj) >= 0;
 			}
-		}
-		
-		function isNumeric(obj) {
-		    return obj - parseFloat(obj) >= 0;
-		}
-    </script>
-  </body>
+		</script>
+	</body>
 </html>
