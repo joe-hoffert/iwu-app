@@ -1,0 +1,90 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>IWU APP Test Site</title>
+		<link rel="stylesheet" href="css/foundation.css" />
+		<script src="js/vendor/modernizr.js"></script>
+		<style>
+			.error {
+				margin-top: -17px !important;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- U.S. 2,3,4: Sets up the home page with two text boxes and if errors exist alerts the user. 
+			Scales the page to fit web and mobile -->
+		<div class="row">
+			<div class="large-4 columns large-centered text-center">
+				<h2>Check Points</h2>
+				<h2 class="subheader"><small>Enter your ID Number and Password</small></h2>
+				<form name="login" action="index.html" method="post" onsubmit="return checkAll()">
+					<input type="tel" name="idNumber" placeholder="ID Number" autofocus required title="Seven digit ID#" onblur="checkForm(this)">
+					<small class="error" style="display:none">Seven digit ID# is required</small>
+					<input type="password" name="password" placeholder="Password" required onblur="checkPass(this)">
+					<small class="error" style="display:none">Password is required.</small>
+					<input type="submit" name="submit" class="button">
+				</form>
+			</div>
+		</div>
+		
+		<script src="js/vendor/jquery.js"></script>
+		<script src="js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+			
+			function isNumeric(obj) {
+				"use strict";
+				return obj - parseFloat(obj) >= 0;
+			}
+			//U.S. 5: checks that a studentID is entered and it's 7 digits. 
+			function checkForm(user)
+			{
+				var usernameLength = 7;
+				"use strict";
+				if (user.value.length !== usernameLength || isNumeric(user.value) === false)
+				{
+					user.style.borderColor = "red";
+					user.nextSibling.nextSibling.style.display = "block";
+					return false;
+				}
+				user.style.borderColor = "green";
+				user.nextSibling.nextSibling.style.display = "none";
+				return true;
+			}
+			//U.S. 6: checks that a password is entered and that it's at least 6 characters or more. 
+			function checkPass(passwrd)
+			{
+				"use strict";
+				if (passwrd !== null)
+				{
+					var passwordLength = 5;
+					if (passwrd.value.length < passwordLength)
+					{
+						passwrd.style.borderColor = "red";
+						passwrd.nextSibling.nextSibling.style.display = "block";
+						return false;
+					}
+					passwrd.style.borderColor = "green";
+					passwrd.nextSibling.nextSibling.style.display = "none";
+					return true;
+					
+				}
+				passwrd.style.borderColor = "red";
+				passwrd.nextSibling.nextSibling.style.display = "block";
+				return false;
+			}
+			
+			function checkAll()
+			{
+				"use strict";
+				if (checkForm(document.getElementsByName('idNumber')[0]) && checkPass(document.getElementsByName('password')[0]))
+				{
+					return true;
+				}
+				return false;
+			}
+		</script>
+	</body>
+</html>
