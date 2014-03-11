@@ -1,13 +1,50 @@
 <?php
 $hide = false;
-if (isset($_POST['submit'])){
+$page_title = 'IWU APP | Check Points';
+if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
+	$mealSwipes = 42;
+	$points = 24.95;
+	//$userID = 2107517; eventually make a hash of the user id to get a unique id
+	$userID = $_POST['idNumber'];
+	if (!isset($_COOKIE["user"])){
+		setcookie("user", $userID, time()+3600);
+	}
+	$page_title = 'Account Information';
+	require("header.php");
 	
 	//check the username against the database
-	
+	//$_POST['idNumber']
 	//check the password against the database
-	echo "New Page";
+	//$_POST['password']
+	
+	
+	// US2:1,2,3 Implemented a dummy system at the moment. Displays account information to the user
+	?>
+	
+	<div class="row">
+		<div class="large-4 columns large-centered text-center medium-6 medium-centered last">
+			<h2>Account Information</h2><hr>
+			<h3><?php echo $userID?></h3>
+			<ul class="pricing-table">
+			  <li class="title">Meal Swipes</li>
+			  <li class="price"><?php echo $mealSwipes?></li>
+			  <!-- <li class="bullet-item">Aprx. 2 per day left</li>future feature for mockup purposes-->
+			</ul>
+			<ul class="pricing-table">
+			  <li class="title">Points</li>
+			  <li class="price"><?php echo $points?></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-4 columns large-centered text-center medium-6 medium-centered last">
+			<h5><a href="/logout.php" class="button secondary">Logout</a></h5>
+		</div>
+	</div>
+<?php	
 	$hide = true;
 }
+
 
 
 if ($hide != true){
@@ -17,14 +54,14 @@ require("header.php");
 			Scales the page to fit web and mobile -->
 		<div class="row">
 			<div class="large-4 columns large-centered text-center medium-6 medium-centered">
-				<h2>Check Points</h2>
+				<h2>Check Points</h2><hr>
 				<h2 class="subheader"><small>Enter your ID Number and Password</small></h2>
-				<form name="login" action="index.php" method="post" onsubmit="return checkAll()">
-					<input type="tel" name="idNumber" placeholder="ID Number" autofocus required maxlength="7" title="Seven digit ID#" onblur="checkForm(this)">
+				<form name="login" method="post" onsubmit="return checkAll()">
+					<input type="tel" name="idNumber" placeholder="ID Number" autofocus required maxlength="7" title="Seven digit ID#" onblur="checkForm(this)" pattern="[0-9]{7}">
 					<small class="error" style="display:none">Seven digit ID# is required</small>
 					<input type="password" name="password" placeholder="Password" maxlength="20" required onblur="checkPass(this)">
 					<small class="error" style="display:none">Password is required.</small>
-					<input type="submit" name="submit" class="button">
+					<input type="submit" name="submit" class="button" value="Submit">
 				</form>
 			</div>
 		</div>
@@ -86,6 +123,6 @@ require("header.php");
 			}
 		</script>
 <?php 
-require('footer.php');
 }
+require('footer.php');
 ?>
