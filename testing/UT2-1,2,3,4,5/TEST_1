@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://iwu:8888/" />
+<title>TEST_1</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">TEST_1</td></tr>
+</thead><tbody>
+<tr>
+	<td>setTimeout</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<!--This next should PASS but not get into the system-->
+<tr>
+	<td>open</td>
+	<td>http://iwu:8888/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=idNumber</td>
+	<td>1234567</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h5</td>
+	<td>Incorrect Username or Password</td>
+</tr>
+<tr>
+	<td>captureEntirePageScreenshot</td>
+	<td>/Applications/MAMP/htdocs/IWU_app/testing/UT2-1,2,3,4,5/test_1.png</td>
+	<td></td>
+</tr>
+<!--This next should FAIL-->
+<tr>
+	<td>open</td>
+	<td>http://iwu:8888/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=idNumber</td>
+	<td>abcdefg</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>captureEntirePageScreenshot</td>
+	<td>/Applications/MAMP/htdocs/IWU_app/testing/UT2-1,2,3,4,5/test_2.png</td>
+	<td></td>
+</tr>
+<!--This next should PASS-->
+<tr>
+	<td>open</td>
+	<td>http://iwu:8888/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=idNumber</td>
+	<td>2080543</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h3</td>
+	<td>Nicole Lehman</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=li.price</td>
+	<td>150</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[2]/li[2]</td>
+	<td>273.20</td>
+</tr>
+<tr>
+	<td>captureEntirePageScreenshot</td>
+	<td>/Applications/MAMP/htdocs/IWU_app/testing/UT2-1,2,3,4,5/test_3.png</td>
+	<td></td>
+</tr>
+<!--This next should PASS-->
+<tr>
+	<td>open</td>
+	<td>http://iwu:8888/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h3</td>
+	<td>Nicole Lehman</td>
+</tr>
+<tr>
+	<td>captureEntirePageScreenshot</td>
+	<td>/Applications/MAMP/htdocs/IWU_app/testing/UT2-1,2,3,4,5/test_4.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Logout</td>
+	<td></td>
+</tr>
+<!--This next should PASS and logout-->
+<tr>
+	<td>open</td>
+	<td>http://iwu:8888/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=idNumber</td>
+	<td>2119454</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>asdfasdfadsf</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h3</td>
+	<td>Joe Smith</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=li.price</td>
+	<td>144</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[2]/li[2]</td>
+	<td>101.34</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h2</td>
+	<td>Check Points</td>
+</tr>
+<tr>
+	<td>captureEntirePageScreenshot</td>
+	<td>/Applications/MAMP/htdocs/IWU_app/testing/UT2-1,2,3,4,5/test_5.png</td>
+	<td></td>
+</tr>
+<!--This next should PASS-->
+<tr>
+	<td>open</td>
+	<td>http://iwu:8888/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h2</td>
+	<td>Check Points</td>
+</tr>
+<tr>
+	<td>captureEntirePageScreenshot</td>
+	<td>/Applications/MAMP/htdocs/IWU_app/testing/UT2-1,2,3,4,5/test_6.png</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>
