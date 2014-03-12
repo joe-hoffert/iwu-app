@@ -1,48 +1,93 @@
 <?php
 $hide = false;
+$send_error = '';
 $page_title = 'IWU APP | Check Points';
 if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
-	$mealSwipes = 42;
-	$points = 24.95;
-	//$userID = 2107517; eventually make a hash of the user id to get a unique id
-	$userID = $_POST['idNumber'];
-	if (!isset($_COOKIE["user"])){
-		setcookie("user", $userID, time()+3600);
-	}
-	$page_title = 'Account Information';
-	require("header.php");
-	
-	//check the username against the database
-	//$_POST['idNumber']
-	//check the password against the database
-	//$_POST['password']
-	
-	
-	// US2:1,2,3 Implemented a dummy system at the moment. Displays account information to the user
-	?>
-	
-	<div class="row">
-		<div class="large-4 columns large-centered text-center medium-6 medium-centered last">
-			<h2>Account Information</h2><hr>
-			<h3><?php echo $userID?></h3>
-			<ul class="pricing-table">
-			  <li class="title">Meal Swipes</li>
-			  <li class="price"><?php echo $mealSwipes?></li>
-			  <!-- <li class="bullet-item">Aprx. 2 per day left</li>future feature for mockup purposes-->
-			</ul>
-			<ul class="pricing-table">
-			  <li class="title">Points</li>
-			  <li class="price"><?php echo $points?></li>
-			</ul>
-		</div>
-	</div>
-	<div class="row">
-		<div class="large-4 columns large-centered text-center medium-6 medium-centered last">
-			<h5><a href="/logout.php" class="button secondary">Logout</a></h5>
-		</div>
-	</div>
-<?php	
 	$hide = true;
+	$mealSwipes = 'error';
+	$points = 'error';
+	$idNumber = $_POST['idNumber'];
+	if ($_COOKIE["user"]!="") {
+		$idNumber = $_COOKIE["user"];
+	}
+	
+	//$userID = 2107517; eventually make a hash of the user id to get a unique id
+	
+	//$mysqli = new mysqli("localhost", "root", "mariner", "iwu-app");// live server
+	$mysqli = new mysqli("localhost", "root", "root", "iwu-app");// dev server
+	
+	/* check connection */
+	if ($mysqli->connect_errno) {
+	    printf("Connect failed: %s\n", $mysqli->connect_error);
+	    exit();
+	}
+	if ($result = $mysqli->query("	SELECT firstName, lastName, mealswipes, points 
+									FROM Student, Account 
+									WHERE Student.studentIDNum = Account.studentIDNum 
+									AND Account.studentIDNum = ".mysql_real_escape_string($idNumber))
+									) {
+		if ($result->num_rows==0){
+			$send_error = "Incorrect Username or Password";
+			$hide = false;
+		}
+		while($row = mysqli_fetch_array($result))
+		  {
+		  $userID = $row['firstName'].' '.$row['lastName'];
+		  $mealSwipes = $row['mealswipes'];
+		  $points = $row['points'];
+		  }
+	
+	    /* free result set */
+	    $result->close();
+	}
+	else {
+		$send_error = "Incorrect Username or Password";
+		$hide = false;
+	}
+	
+	if ($send_error == '') {
+		$cookieUserId = $_POST['idNumber'];
+		if (!isset($_COOKIE["user"])){
+			setcookie("user", $cookieUserId, time()+3600);
+		}
+		$page_title = 'Account Information';
+		require("header.php");
+		
+		
+	
+		
+		
+		//check the username against the database
+		//$_POST['idNumber']
+		//check the password against the database
+		//$_POST['password']
+		mysqli_close($mysqli);
+		
+		// US2:1,2,3 Implemented a dummy system at the moment. Displays account information to the user
+		?>
+		
+		<div class="row">
+			<div class="large-4 columns large-centered text-center medium-6 medium-centered last">
+				<h2>Account Information</h2><hr>
+				<h3><?php echo $userID?></h3>
+				<ul class="pricing-table">
+				  <li class="title">Meal Swipes</li>
+				  <li class="price"><?php echo $mealSwipes?></li>
+				  <!-- <li class="bullet-item">Aprx. 2 per day left</li>future feature for mockup purposes-->
+				</ul>
+				<ul class="pricing-table">
+				  <li class="title">Points</li>
+				  <li class="price"><?php echo $points?></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-4 columns large-centered text-center medium-6 medium-centered last">
+				<h5><a href="/logout.php" class="button secondary">Logout</a></h5>
+			</div>
+		</div>
+	<?php
+	}
 }
 
 
@@ -61,6 +106,10 @@ require("header.php");
 					<small class="error" style="display:none">Seven digit ID# is required</small>
 					<input type="password" name="password" placeholder="Password" maxlength="20" required onblur="checkPass(this)">
 					<small class="error" style="display:none">Password is required.</small>
+					<?php if ($send_error != '') {
+						echo '<h5 style="color:red">'.$send_error.'<h5>';
+					}
+					?>
 					<input type="submit" name="submit" class="button" value="Submit">
 				</form>
 			</div>
