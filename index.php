@@ -13,8 +13,8 @@ if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
 	
 	//$userID = 2107517; eventually make a hash of the user id to get a unique id
 	
-	//$mysqli = new mysqli("localhost", "root", "mariner", "iwu-app");// live server
-	$mysqli = new mysqli("localhost", "root", "root", "iwu-app");// dev server
+	require("config.php");// get SQL Database login credentials
+	$mysqli = new mysqli($sql_host, $sql_username, $sql_password, $sql_database);
 	
 	/* check connection */
 	if ($mysqli->connect_errno) {
@@ -63,7 +63,11 @@ if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
 		//$_POST['password']
 		mysqli_close($mysqli);
 		
-		// US2:1,2,3 Implemented a dummy system at the moment. Displays account information to the user
+		$date = "3/14/14";
+		$time = "9:34PM";
+		$location = "Wildcat";
+		
+		// US2:1,2,3 Implemented a fully working system. Displays account information to the user
 		?>
 		
 		<div class="row">
@@ -73,11 +77,14 @@ if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
 				<ul class="pricing-table">
 				  <li class="title">Meal Swipes</li>
 				  <li class="price"><?php echo $mealSwipes?></li>
-				  <!-- <li class="bullet-item">Aprx. 2 per day left</li>future feature for mockup purposes-->
+				  <li class="bullet-item">Last Used: <?php echo $date.' '.$time.' at '.$location;?></li><!-- future feature for mockup purposes-->
+				  <li class="cta-button"><a class="button tiny radius" href="accountHistory.php?type=mealSwipes">Full History</a></li>
 				</ul>
 				<ul class="pricing-table">
 				  <li class="title">Points</li>
 				  <li class="price"><?php echo $points?></li>
+				  <li class="bullet-item">Last Used: <?php echo $date.' '.$time.' at '.$location;?></li><!-- future feature for mockup purposes-->
+				  <li class="cta-button"><a class="button tiny radius" href="accountHistory.php?type=points">Full History</a></li>
 				</ul>
 			</div>
 		</div>
