@@ -1,7 +1,24 @@
 <?php
+/************************************************************************** 
+* Copyright 2014 Nikki Lehman, Erik Vanlandingham, Brent Zerbe            * 
+*																		  * 
+* Licensed under the Apache License, Version 2.0 (the "License");         * 
+* you may not use this file except in compliance with the License.        * 
+* You may obtain a copy of the License at                                 * 
+*																		  * 
+* http://www.apache.org/licenses/LICENSE-2.0 							  * 
+*																		  * 
+* Unless required by applicable law or agreed to in writing, software     * 
+* distributed under the License is distributed on an "AS IS" BASIS,       * 
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.* 
+* See the License for the specific language governing permissions and     * 
+* limitations under the License. 									  	  * 
+**************************************************************************/
 $hide = false;
 $send_error = '';
 $page_title = 'IWU APP | Check Points';
+error_reporting(E_ALL);//These two lines are just telling the server to show all the errors
+ini_set('display_errors', '1');
 if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
 	$hide = true;
 	$mealSwipes = 'error';
@@ -10,40 +27,55 @@ if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
 	if ($_COOKIE["user"]!="") {
 		$idNumber = $_COOKIE["user"];
 	}
+	var_dump($idNumber);
 	
 	//$userID = 2107517; eventually make a hash of the user id to get a unique id
 	
 	require("config.php");// get SQL Database login credentials
 	$mysqli = new mysqli($sql_host, $sql_username, $sql_password, $sql_database);
 	
+	
 	/* check connection */
 	if ($mysqli->connect_errno) {
 	    printf("Connect failed: %s\n", $mysqli->connect_error);
 	    exit();
 	}
+	
+	$sql = "SELECT Student_Account.firstName, Student_Account.lastName, Mealswipe_History.totalMealswipes, Mealswipe_History.lastUsed 
+			FROM Student_Account, Mealswipe_History
+			WHERE Student_Account.id = Mealswipe_History.Student_Account_id 
+			AND Student_Account.studentID = ".mysql_real_escape_string($idNumber);
+			
+	$result = $mysqli->query($sql);
+	$row = mysqli_fetch_assoc($result);
+	var_dump($row);
+	
+	if ($row!=null) {
+		$userID = $row['firstName'].' '.$row['lastName'];
+		$mealSwipes = $row['totalMealswipes'];
+		$points = $row['points'];
+	}
+	else {
+		$send_error = "Incorrect Username or Password";
+		$hide = false;
+	}
+	/*
+	
 	if ($result = $mysqli->query("	SELECT firstName, lastName, mealswipes, points 
 									FROM Student, Account 
 									WHERE Student.studentIDNum = Account.studentIDNum 
 									AND Account.studentIDNum = ".mysql_real_escape_string($idNumber))
 									) {
 		if ($result->num_rows==0){
-			$send_error = "Incorrect Username or Password";
-			$hide = false;
+			
 		}
 		while($row = mysqli_fetch_array($result))
 		  {
-		  $userID = $row['firstName'].' '.$row['lastName'];
-		  $mealSwipes = $row['mealswipes'];
-		  $points = $row['points'];
+		  
 		  }
 	
 	    /* free result set */
 	    $result->close();
-	}
-	else {
-		$send_error = "Incorrect Username or Password";
-		$hide = false;
-	}
 	
 	if ($send_error == '') {
 		$cookieUserId = $_POST['idNumber'];
