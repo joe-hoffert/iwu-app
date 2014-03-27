@@ -15,118 +15,111 @@
 * limitations under the License. 									  	  * 
 **************************************************************************/
 $hide = false;
+//ini_set('display_startup_errors',1);
+//ini_set('display_errors',1);
+//error_reporting(-1);
 $send_error = '';
 $page_title = 'IWU APP | Check Points';
-error_reporting(E_ALL);//These two lines are just telling the server to show all the errors
-ini_set('display_errors', '1');
 if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
 	$hide = true;
 	$mealSwipes = 'error';
 	$points = 'error';
 	$idNumber = $_POST['idNumber'];
-	if ($_COOKIE["user"]!="") {
-		$idNumber = $_COOKIE["user"];
-	}
-	var_dump($idNumber);
-	
-	//$userID = 2107517; eventually make a hash of the user id to get a unique id
+	$password = $_POST['password'];
 	
 	require("config.php");// get SQL Database login credentials
-	$mysqli = new mysqli($sql_host, $sql_username, $sql_password, $sql_database);
+	require("functions.php");
+	$mysqli = iwu_startMysql();
 	
-	
-	/* check connection */
-	if ($mysqli->connect_errno) {
-	    printf("Connect failed: %s\n", $mysqli->connect_error);
-	    exit();
+	if ($_COOKIE["user"]!="") {
+		$idNumber = $_COOKIE["user"];
+		$sql = "SELECT firstName, lastName
+				FROM Student_Account
+				WHERE studentID = ".mysql_real_escape_string($idNumber);
+		$row = iwu_getRow($sql, $mysqli);
 	}
-	
-	$sql = "SELECT Student_Account.firstName, Student_Account.lastName, Mealswipe_History.totalMealswipes, Mealswipe_History.lastUsed 
-			FROM Student_Account, Mealswipe_History
-			WHERE Student_Account.id = Mealswipe_History.Student_Account_id 
-			AND Student_Account.studentID = ".mysql_real_escape_string($idNumber);
-			
-	$result = $mysqli->query($sql);
-	$row = mysqli_fetch_assoc($result);
-	var_dump($row);
-	
-	if ($row!=null) {
+	else {
+		//check if they are in the database
+		$sql = "SELECT firstName, lastName
+				FROM Student_Account
+				WHERE studentID = ".mysql_real_escape_string($idNumber)."
+				AND password = '".mysql_real_escape_string($password)."'";
+		$row = iwu_getRow($sql, $mysqli);
+	}
+	if ($row!=null || $row!=false) {
 		$userID = $row['firstName'].' '.$row['lastName'];
-		$mealSwipes = $row['totalMealswipes'];
-		$points = $row['points'];
+		$cookieUserId = mysql_real_escape_string($_POST['idNumber']);
+		if (!isset($_COOKIE["user"])){
+			setcookie("user", $cookieUserId, time()+3600);
+			//$_COOKIE["user"]=$cookieUserId;
+		}
 	}
 	else {
 		$send_error = "Incorrect Username or Password";
 		$hide = false;
 	}
-	/*
 	
-	if ($result = $mysqli->query("	SELECT firstName, lastName, mealswipes, points 
-									FROM Student, Account 
-									WHERE Student.studentIDNum = Account.studentIDNum 
-									AND Account.studentIDNum = ".mysql_real_escape_string($idNumber))
-									) {
-		if ($result->num_rows==0){
-			
-		}
-		while($row = mysqli_fetch_array($result))
-		  {
-		  
-		  }
-	
-	    /* free result set */
-	    $result->close();
 	
 	if ($send_error == '') {
-		$cookieUserId = $_POST['idNumber'];
-		if (!isset($_COOKIE["user"])){
-			setcookie("user", $cookieUserId, time()+3600);
-		}
+		
+		
+		//get Amount of Mealswipes
+		$sql = "SELECT lastUsed, totalMealswipes, location
+				FROM Student_Account, Mealswipe_History, Locations
+				WHERE Student_Account.StudentID = ".mysql_real_escape_string($idNumber)." AND
+				    Student_Account.id = Mealswipe_History.Student_Account_id AND
+				    Mealswipe_History.Locations_id = Locations.id 
+				ORDER BY lastUsed DESC LIMIT 1";
+		$allMeals = iwu_getRow($sql, $mysqli);
+		$mealSwipes = $allMeals['totalMealswipes'];
+		$mealLocation = $allMeals['location'];
+		$mealTime = $allMeals['lastUsed'];
+		
+		//get Amount of Points
+		$sql = "SELECT lastUsed, pointsSpent, totalPoints, location
+				FROM Student_Account, Point_History, Locations
+				WHERE Student_Account.StudentID = ".mysql_real_escape_string($idNumber)." AND
+				    Student_Account.id = Point_History.Student_Account_id AND
+				    Point_History.Locations_id = Locations.id 
+				ORDER BY lastUsed DESC LIMIT 1";
+		$allPoints = iwu_getRow($sql, $mysqli);
+		$points = $allPoints['totalPoints'];
+		$pointsLocation = $allPoints['location'];
+		$pointsTime = $allPoints['lastUsed'];
+		
 		$page_title = 'Account Information';
 		require("header.php");
 		
-		
-	
-		
-		
-		//check the username against the database
-		//$_POST['idNumber']
-		//check the password against the database
-		//$_POST['password']
-		mysqli_close($mysqli);
-		
-		$date = "3/14/14";
-		$time = "9:34PM";
-		$location = "Wildcat";
 		
 		// US2:1,2,3 Implemented a fully working system. Displays account information to the user
 		?>
 		
 		<div class="row">
-			<div class="large-4 columns large-centered text-center medium-6 medium-centered last">
+			<div class="large-5 columns large-centered text-center medium-6 medium-centered last">
 				<h2>Account Information</h2><hr>
 				<h3><?php echo $userID?></h3>
 				<ul class="pricing-table">
 				  <li class="title">Meal Swipes</li>
 				  <li class="price"><?php echo $mealSwipes?></li>
-				  <li class="bullet-item">Last Used: <?php echo $date.' '.$time.' at '.$location;?></li><!-- future feature for mockup purposes-->
+				  <li class="bullet-item">Last Used: <?php echo date('F d, Y h:mA', strtotime($mealTime)).' at '.$mealLocation;?></li><!-- future feature for mockup purposes-->
 				  <li class="cta-button"><a class="button tiny radius" href="accountHistory.php?type=mealSwipes">Full History</a></li>
 				</ul>
 				<ul class="pricing-table">
 				  <li class="title">Points</li>
-				  <li class="price"><?php echo $points?></li>
-				  <li class="bullet-item">Last Used: <?php echo $date.' '.$time.' at '.$location;?></li><!-- future feature for mockup purposes-->
+				  <li class="price"><?php echo number_format($points, 2, '.', '');?></li>
+				  <li class="bullet-item">Last Used: <?php echo date('F d, Y h:mA', strtotime($pointsTime)).' at '.$pointsLocation;?></li><!-- future feature for mockup purposes-->
 				  <li class="cta-button"><a class="button tiny radius" href="accountHistory.php?type=points">Full History</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="row">
-			<div class="large-4 columns large-centered text-center medium-6 medium-centered last">
+			<div class="large-5 columns large-centered text-center medium-6 medium-centered last">
 				<h5><a href="/logout.php" class="button secondary">Logout</a></h5>
 			</div>
 		</div>
 	<?php
 	}
+	iwu_stopMysql($mysqli);
 }
 
 
