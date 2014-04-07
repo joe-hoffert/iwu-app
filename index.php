@@ -18,14 +18,36 @@ $hide = false;
 //ini_set('display_startup_errors',1);
 //ini_set('display_errors',1);
 //error_reporting(-1);
+
+function dateDiffDay ($d1, $d2) {
+// Return the number of days between the two dates:
+
+  return round(abs(strtotime($d1)-strtotime($d2))/(60*60*24));
+
+}  // end function dateDiff
+
+function dateDiffWeek ($d1, $d2) {
+// Return the number of days between the two dates:
+
+  return round(abs(strtotime($d1)-strtotime($d2))/(60*60*24*7));
+
+}  // end function dateDiff
+
 $send_error = '';
 $page_title = 'IWU APP | Check Points';
 if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
 	$hide = true;
 	$mealSwipes = 'error';
 	$points = 'error';
-	$idNumber = $_POST['idNumber'];
-	$password = $_POST['password'];
+	
+	
+	//get the date
+	$today = getdate();
+	$d = $today['mday'];
+	$m = $today['mon'];
+	$y = $today['year'];
+	$datetime1 = "$y-$m-$d";
+	
 	
 	require("config.php");// get SQL Database login credentials
 	require("functions.php");
@@ -40,6 +62,8 @@ if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
 	}
 	else {
 		//check if they are in the database
+		$idNumber = $_POST['idNumber'];
+		$password = $_POST['password'];
 		$sql = "SELECT firstName, lastName
 				FROM Student_Account
 				WHERE studentID = ".mysql_real_escape_string($idNumber)."
@@ -87,6 +111,7 @@ if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
 		$pointsLocation = $allPoints['location'];
 		$pointsTime = $allPoints['lastUsed'];
 		
+		$datetime2 = '2014-04-23';//initial implementation of US4:7,8
 		$page_title = 'Account Information';
 		require("header.php");
 		
@@ -101,13 +126,19 @@ if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
 				<ul class="pricing-table">
 				  <li class="title">Meal Swipes</li>
 				  <li class="price"><?php echo $mealSwipes?></li>
+				  <li class="bullet-item">Average left per day: <?php
+					$interval = dateDiffDay($datetime1, $datetime2);
+					echo number_format($mealSwipes/$interval, 2, '.', '');?></li>
 				  <li class="bullet-item">Last Used: <?php echo date('F d, Y h:mA', strtotime($mealTime)).' at '.$mealLocation;?></li><!-- future feature for mockup purposes-->
 				  <li class="cta-button"><a class="button tiny radius" href="accountHistory.php?type=mealSwipes">Full History</a></li>
 				</ul>
 				<ul class="pricing-table">
 				  <li class="title">Points</li>
 				  <li class="price"><?php echo number_format($points, 2, '.', '');?></li>
-				  <li class="bullet-item">Last Used: <?php echo date('F d, Y h:mA', strtotime($pointsTime)).' at '.$pointsLocation;?></li><!-- future feature for mockup purposes-->
+				  <li class="bullet-item">Average left per week: <?php
+					$interval = dateDiffWeek($datetime1, $datetime2);
+					echo number_format($points/$interval, 2, '.', '');?></li>
+				  <li class="bullet-item">Last Used: <?php echo date('F d, Y h:mA', strtotime($pointsTime)).' at '.$pointsLocation;?></li>
 				  <li class="cta-button"><a class="button tiny radius" href="accountHistory.php?type=points">Full History</a></li>
 				</ul>
 			</div>
