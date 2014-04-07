@@ -91,15 +91,29 @@ else {
 		  <!--<li class="description">as of [current time]</li>
 		  <li class="bullet-item">Last Used: <?php echo $date.' '.$time.' at '.$location;?></li> future feature for mockup purposes-->
 		</ul>
-		<table>
+		<style>
+			.myTable .header{
+				background-image: url(img/bg.gif);
+				background-repeat: no-repeat;
+				background-position: center right;
+				cursor: pointer;
+			}
+			.myTable tr .headerSortUp {
+				background-image: url(img/asc.gif);
+			}
+			.myTable tr .headerSortDown {
+				background-image: url(img/desc.gif);
+			}
+		</style>
+		<table class="myTable">
 		  <thead>
 		    <tr>
 		      <th width="350">Date</th>
-		      <th>Location</th>
+		      <th style="padding-right:20px">Location</th>
 		      <?php if ($page_type == "Points") {
-			      echo '<th width="75" class="text-center">Cost</th>';
+			      echo '<th width="75" class="text-center" style="padding-right:15px">Cost</th>';
 		      }?>
-		      <th width="75" class="text-center">Total</th>
+		      <th width="75" class="text-center" style="padding-right:15px">Total</th>
 		    </tr>
 		  </thead>
 		  <tbody>

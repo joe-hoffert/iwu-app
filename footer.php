@@ -21,5 +21,17 @@
 		<script>
 			$(document).foundation();
 		</script>
+		
+		<?php
+		if (basename($_SERVER['PHP_SELF'], ".php") == "accountHistory") {?>
+			<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script> 
+			<script>
+			$(document).ready(function() 
+			    { 
+			        $(".myTable").tablesorter(); 
+			    } 
+			);
+			</script>
+		<?php } ?>
 	</body>
 </html>
