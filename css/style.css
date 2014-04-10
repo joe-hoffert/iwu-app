@@ -1,0 +1,20 @@
+.error {
+	margin-top: -17px !important;
+}
+.tablesorter-header {
+	background-repeat: no-repeat;
+	background-position: center right;
+	padding: 4px 18px 4px 4px;
+	white-space: normal;
+	cursor: pointer;
+}
+.myTable .tablesorter-headerUnSorted{
+	background-image: url(../img/bg.gif);
+	
+}
+.myTable tr .tablesorter-headerAsc {
+	background-image: url(../img/asc.gif);
+}
+.myTable tr .tablesorter-headerDesc {
+	background-image: url(../img/desc.gif);
+}

@@ -73,8 +73,8 @@ else {
 ?>
 <div class="row">
 	<div class="large-5 columns large-centered text-center medium-6 medium-centered last">
-		<h4 class="show-for-small"><a href="<?php echo $site_url?>" class="button tiny left">Back</a>Account History<a href="/logout.php" class="button secondary tiny right">Logout</a></h4>
-		<h3 class="hide-for-small"><a href="<?php echo $site_url?>" class="button tiny left">Back</a>Account History<a href="/logout.php" class="button secondary tiny right">Logout</a></h3>
+		<h4 class="show-for-small"><a href="<?=$site_url?>" class="button tiny left">Back</a>Account History<a href="/logout.php" class="button secondary tiny right">Logout</a></h4>
+		<h3 class="hide-for-small"><a href="<?=$site_url?>" class="button tiny left">Back</a>Account History<a href="/logout.php" class="button secondary tiny right">Logout</a></h3>
 		<hr>
 		
 		<h3><?php echo $userID?></h3>
@@ -91,24 +91,19 @@ else {
 		  <!--<li class="description">as of [current time]</li>
 		  <li class="bullet-item">Last Used: <?php echo $date.' '.$time.' at '.$location;?></li> future feature for mockup purposes-->
 		</ul>
-		<style>
-			.myTable .header{
-				background-image: url(img/bg.gif);
-				background-repeat: no-repeat;
-				background-position: center right;
-				cursor: pointer;
-			}
-			.myTable tr .headerSortUp {
-				background-image: url(img/asc.gif);
-			}
-			.myTable tr .headerSortDown {
-				background-image: url(img/desc.gif);
-			}
-		</style>
+		<div class="row">
+			<div class="small-6 columns">
+				<a href="yourTrends.php?type=<?=$_GET["type"]?>" class="button expand">Your Trends</a>
+			</div>
+			<div class="small-6 columns">
+				<a href="schoolTrends.php?type=<?=$_GET["type"]?>" class="button expand">School Trends</a>
+			</div>
+		</div>
+		</ul>
 		<table class="myTable">
 		  <thead>
 		    <tr>
-		      <th width="350">Date</th>
+		      <th width="350" data-sorter="usLongDate">Date</th>
 		      <th style="padding-right:20px">Location</th>
 		      <?php if ($page_type == "Points") {
 			      echo '<th width="75" class="text-center" style="padding-right:15px">Cost</th>';
@@ -118,7 +113,6 @@ else {
 		  </thead>
 		  <tbody>
 		  <?php
-		  
 		  foreach ($Full_list as $list) {
 			  echo '<tr>';
 			  echo '<td>'.date('F d, Y h:mA', strtotime($list['lastUsed'])).'</td>';
@@ -138,7 +132,5 @@ else {
 	</div>
 </div>
 <?php
-
-
 require('footer.php');
 ?>

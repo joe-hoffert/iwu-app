@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://iwu:8888/" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<!--B:Test the Password case sensitivity-->
+<tr>
+	<td>open</td>
+	<td>http://iwu:8888/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=idNumber</td>
+	<td>2008054</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h3</td>
+	<td>Nicole Lehman</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=idNumber</td>
+	<td>2008054</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>PASSWORD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h5</td>
+	<td>Incorrect Username or Password</td>
+</tr>
+<!--US4:1,11-->
+<tr>
+	<td>type</td>
+	<td>name=idNumber</td>
+	<td>2008054</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Full History</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Your Trends</td>
+	<td>Your Trends</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=School Trends</td>
+	<td>School Trends</td>
+</tr>
+<!--US4:3,13-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Your Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//h3[2]</td>
+	<td>Meal Swipes per Location in the last 30 days</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=School Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//h3[2]</td>
+	<td>Meal Swipes per Location Today</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h3.hide-for-small</td>
+	<td>BackSchool TrendsLogout</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<!--US4:2,12-->
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Full History')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Your Trends</td>
+	<td>Your Trends</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=School Trends</td>
+	<td>School Trends</td>
+</tr>
+<!--US4:4,14-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Your Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h3.hide-for-small</td>
+	<td>BackYour TrendsLogout</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//h3[2]</td>
+	<td>Points per Location in the last 30 days</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=School Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h3.hide-for-small</td>
+	<td>BackSchool TrendsLogout</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//h3[2]</td>
+	<td>Points per Location Today</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<!--US4:5,15-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Full History</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Your Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=canvas</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Baldwin(2) 50%</td>
+	<td>Baldwin(2) 50%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Marios(1) 25%</td>
+	<td>Marios(1) 25%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Wildcat(1) 25%</td>
+	<td>Wildcat(1) 25%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=School Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=canvas</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Baldwin(8) 29%</td>
+	<td>Baldwin(8) 29%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Marios(9) 32%</td>
+	<td>Marios(9) 32%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Wildcat(6) 21%</td>
+	<td>Wildcat(6) 21%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Wings 'n Tots(5) 18%</td>
+	<td>Wings 'n Tots(5) 18%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Full History')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Your Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=canvas</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=C Store(4) 50%</td>
+	<td>C Store(4) 50%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=McConn(4) 50%</td>
+	<td>McConn(4) 50%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=School Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=C Store(16) 29%</td>
+	<td>C Store(16) 29%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=canvas</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=McConn(32) 58%</td>
+	<td>McConn(32) 58%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Wildcat(7) 13%</td>
+	<td>Wildcat(7) 13%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<!--US4:7,8-->
+<tr>
+	<td>verifyText</td>
+	<td>css=li.bullet-item</td>
+	<td>Average left per day: 4.92</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[2]/li[3]</td>
+	<td>Average left per week: 93.40</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>http://iwu:8888/insert_function_US4.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>http://iwu:8888/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=li.price</td>
+	<td>63</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[2]/li[2]</td>
+	<td>184.30</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[2]/li[4]</td>
+	<td>Last Used: April 10, 2014 01:04AM at Wildcat</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=li.bullet-item</td>
+	<td>Average left per day: 4.85</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[2]/li[3]</td>
+	<td>Average left per week: 92.15</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Full History</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Your Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Baldwin(2) 50%</td>
+	<td>Baldwin(2) 50%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Marios(1) 25%</td>
+	<td>Marios(1) 25%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Wildcat(1) 25%</td>
+	<td>Wildcat(1) 25%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=School Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Baldwin(8) 29%</td>
+	<td>Baldwin(8) 29%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Marios(9) 32%</td>
+	<td>Marios(9) 32%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Wildcat(6) 21%</td>
+	<td>Wildcat(6) 21%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Wings 'n Tots(5) 18%</td>
+	<td>Wings 'n Tots(5) 18%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Full History')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Your Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=C Store(4) 50%</td>
+	<td>C Store(4) 50%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=McConn(4) 50%</td>
+	<td>McConn(4) 50%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=School Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=C Store(16) 29%</td>
+	<td>C Store(16) 29%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=McConn(32) 58%</td>
+	<td>McConn(32) 58%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Wildcat(7) 13%</td>
+	<td>Wildcat(7) 13%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>http://iwu:8888/delete_function_US4.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>http://iwu:8888/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=li.price</td>
+	<td>64</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=li.bullet-item</td>
+	<td>Average left per day: 4.92</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[2]/li[2]</td>
+	<td>186.80</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[2]/li[3]</td>
+	<td>Average left per week: 93.40</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Full History</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Your Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Baldwin(2) 50%</td>
+	<td>Baldwin(2) 50%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Marios(1) 25%</td>
+	<td>Marios(1) 25%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Wildcat(1) 25%</td>
+	<td>Wildcat(1) 25%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=School Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Baldwin(8) 29%</td>
+	<td>Baldwin(8) 29%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Marios(9) 32%</td>
+	<td>Marios(9) 32%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Wildcat(6) 21%</td>
+	<td>Wildcat(6) 21%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Wings 'n Tots(5) 18%</td>
+	<td>Wings 'n Tots(5) 18%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Full History')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Your Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=C Store(4) 50%</td>
+	<td>C Store(4) 50%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=McConn(4) 50%</td>
+	<td>McConn(4) 50%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=School Trends</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=C Store(16) 29%</td>
+	<td>C Store(16) 29%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=McConn(32) 58%</td>
+	<td>McConn(32) 58%</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Wildcat(7) 13%</td>
+	<td>Wildcat(7) 13%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Back')])[2]</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

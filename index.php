@@ -18,20 +18,29 @@ $hide = false;
 //ini_set('display_startup_errors',1);
 //ini_set('display_errors',1);
 //error_reporting(-1);
+define('DAY_VAL', 60*60*24);
 
+/*
+**input:two dates formatted "2014-12-14"
+**returns difference in days
+*/
 function dateDiffDay ($d1, $d2) {
 // Return the number of days between the two dates:
 
-  return round(abs(strtotime($d1)-strtotime($d2))/(60*60*24));
+  return round(abs(strtotime($d1)-strtotime($d2))/(DAY_VAL));
 
-}  // end function dateDiff
+}
 
+/*
+**input:two dates formatted "2014-12-14"
+**returns difference in weeks
+*/
 function dateDiffWeek ($d1, $d2) {
-// Return the number of days between the two dates:
+// Return the number of weeks between the two dates:
 
-  return round(abs(strtotime($d1)-strtotime($d2))/(60*60*24*7));
+  return round(abs(strtotime($d1)-strtotime($d2))/(DAY_VAL*7));
 
-}  // end function dateDiff
+}
 
 $send_error = '';
 $page_title = 'IWU APP | Check Points';
@@ -39,6 +48,7 @@ if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
 	$hide = true;
 	$mealSwipes = 'error';
 	$points = 'error';
+	$hasher = '';
 	
 	
 	//get the date
@@ -62,13 +72,24 @@ if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
 	}
 	else {
 		//check if they are in the database
+		$password = mysql_real_escape_string($_POST['password']);
+		require("PasswordHash.php");
+		$hasher = new PasswordHash(8, false);
+		$hash = $hasher->HashPassword($password);
 		$idNumber = $_POST['idNumber'];
-		$password = $_POST['password'];
-		$sql = "SELECT firstName, lastName
+		
+		$sql = "SELECT firstName, lastName, password
 				FROM Student_Account
-				WHERE studentID = ".mysql_real_escape_string($idNumber)."
-				AND password = '".mysql_real_escape_string($password)."'";
+				WHERE studentID = ".mysql_real_escape_string($idNumber);/*."
+				AND password = '".mysql_real_escape_string($hash)."'";*/
 		$row = iwu_getRow($sql, $mysqli);
+		if ($row!=null || $row!=false) {
+			$check = $hasher->CheckPassword($password, $row['password']);
+			if ($check==false) {
+				$send_error = "Incorrect Username or Password";
+				$hide = false;
+			}
+		}
 	}
 	if ($row!=null || $row!=false) {
 		$userID = $row['firstName'].' '.$row['lastName'];
@@ -111,7 +132,10 @@ if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
 		$pointsLocation = $allPoints['location'];
 		$pointsTime = $allPoints['lastUsed'];
 		
-		$datetime2 = '2014-04-23';//initial implementation of US4:7,8
+		$sql = "SELECT Last_Day FROM End_Of_Semester";
+		$datetime2 = iwu_getRow($sql, $mysqli);
+
+		$datetime2 = $datetime2['Last_Day'];// implementation of US4:7,8
 		$page_title = 'Account Information';
 		require("header.php");
 		
@@ -234,7 +258,7 @@ require("header.php");
 				return false;
 			}
 		</script>
-<?php 
+<?php
 }
 require('footer.php');
 ?>

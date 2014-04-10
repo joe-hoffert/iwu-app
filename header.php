@@ -22,11 +22,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title><?php echo $page_title?></title>
 		<link rel="stylesheet" href="css/foundation.css" />
+		<link rel="stylesheet" href="css/style.css" />
 		<script src="js/vendor/modernizr.js"></script>
-		<style>
-			.error {
-				margin-top: -17px !important;
-			}
-		</style>
 	</head>
 	<body>
