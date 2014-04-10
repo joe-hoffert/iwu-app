@@ -45,7 +45,7 @@ else {
 				WHERE Student_Account.StudentID = ".mysql_real_escape_string($idNumber)." 
 				AND Student_Account.id = Mealswipe_History.Student_Account_id 
 				AND Mealswipe_History.Locations_id = Locations.id 
-				AND Mealswipe_History.lastUsed< DATE(NOW() - INTERVAL 30 DAY)
+				AND Mealswipe_History.lastUsed>= DATE(NOW() - INTERVAL 30 DAY)
 				GROUP BY location";
 		$Full_list = iwu_getResults($sql, $mysqli);
 	}
@@ -59,7 +59,7 @@ else {
 				WHERE Student_Account.StudentID = ".mysql_real_escape_string($idNumber)." 
 				AND Student_Account.id = Point_History.Student_Account_id 
 				AND Point_History.Locations_id = Locations.id 
-				AND Point_History.lastUsed< DATE(NOW() - INTERVAL 30 DAY)
+				AND Point_History.lastUsed>= DATE(NOW() - INTERVAL 30 DAY)
 				GROUP BY location";
 		$Full_list = iwu_getResults($sql, $mysqli);
 	}
