@@ -44,7 +44,7 @@ else {
 				FROM Student_Account, Mealswipe_History, Locations 
 				WHERE Student_Account.id = Mealswipe_History.Student_Account_id 
 				AND Mealswipe_History.Locations_id = Locations.id 
-				AND Mealswipe_History.lastUsed< DATE(NOW() - INTERVAL 1 DAY)
+				AND DATE(Mealswipe_History.lastUsed)=CURDATE()
 				GROUP BY location";
 		$Full_list = iwu_getResults($sql, $mysqli);
 	}
@@ -57,7 +57,7 @@ else {
 				FROM Student_Account, Point_History, Locations 
 				WHERE Student_Account.id = Point_History.Student_Account_id 
 				AND Point_History.Locations_id = Locations.id 
-				AND Point_History.lastUsed< DATE(NOW() - INTERVAL 1 DAY)
+				AND DATE(Point_History.lastUsed)=CURDATE()
 				GROUP BY location";
 		$Full_list = iwu_getResults($sql, $mysqli);
 	}
