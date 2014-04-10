@@ -147,19 +147,19 @@ if (isset($_POST['submit']) || $_COOKIE["user"]!=""){
 			<div class="large-5 columns large-centered text-center medium-6 medium-centered last">
 				<h2>Account Information</h2><hr>
 				<h3><?php echo $userID?></h3>
-				<ul class="pricing-table">
-				  <li class="title">Meal Swipes</li>
+				<ul class="pricing-table meals">
+				  <li class="title ">Meal Swipes<span class="arrow"></span></li>
 				  <li class="price"><?php echo $mealSwipes?></li>
-				  <li class="bullet-item">Average left per day: <?php
+				  <li class="bullet-item">Average left in semester per day: <?php
 					$interval = dateDiffDay($datetime1, $datetime2);
 					echo number_format($mealSwipes/$interval, 2, '.', '');?></li>
 				  <li class="bullet-item">Last Used: <?php echo date('F d, Y h:mA', strtotime($mealTime)).' at '.$mealLocation;?></li><!-- future feature for mockup purposes-->
 				  <li class="cta-button"><a class="button tiny radius" href="accountHistory.php?type=mealSwipes">Full History</a></li>
 				</ul>
-				<ul class="pricing-table">
-				  <li class="title">Points</li>
+				<ul class="pricing-table points">
+				  <li class="title">Points<span class="arrow"></span></li>
 				  <li class="price"><?php echo number_format($points, 2, '.', '');?></li>
-				  <li class="bullet-item">Average left per week: <?php
+				  <li class="bullet-item">Average left in semester per week: <?php
 					$interval = dateDiffWeek($datetime1, $datetime2);
 					echo number_format($points/$interval, 2, '.', '');?></li>
 				  <li class="bullet-item">Last Used: <?php echo date('F d, Y h:mA', strtotime($pointsTime)).' at '.$pointsLocation;?></li>
