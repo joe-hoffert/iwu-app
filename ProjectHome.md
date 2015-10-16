@@ -1,0 +1,1 @@
+We are creating an application that provides a student information on how many meal swipes and points are left. Also gives history and hours.
